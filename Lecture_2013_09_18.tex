@@ -1,0 +1,126 @@
+\section{Was ist Stochastik (Zufallslehre)?}
+\enumstart
+	\item Wahrscheinlichkeitstheorie
+	\enumstart
+		\item mathematische Modelle für zufällige Phänomene
+	\enumend
+	\item Statistik
+	\enumstart
+		\item Gegeben: Daten
+		\item Suche ein wahrscheinlichkeitstheoretisches Modell, das die Daten gut erklärt
+	\enumend
+\enumend
+
+\subsection{Beispiel}
+\enumstart
+	\item Eine Urne enthält verschiedene Würfel, zwei Sorten, je gleich viele. Bei einer Sorte ist die 6 durch eine 7 ersetzt. Ziehe blind einen Würfel, würfle damit, teile mit, ob der gewürfelte Wert gerade oder ungerade ist.
+	\item Typische Fragen der Wahrscheinlichkeitstheorie
+	\enumstart
+		\item Wie wahrscheinlich ist es, dass eine gerade Zahl kommt?
+		\item Ziehe $n$-mal einen Würfel, wie verhält sich fur $n \rightarrow \infty$ der Anteil von geraden Ergebnissen?
+	\enumend
+	\item Typische Fragen der Statistik
+	\enumstart
+		\item Sie haben die Ergebnisse von $n$ Würfen. Hat der Würfel eine 7 oder nicht?
+		\item Wie zuverlässig ist ihre Antwort? Wette möglich? Oder brachen Sie mehr Daten?
+	\enumend
+\enumend
+
+\section{Wahrscheinlichkeitstheorie}
+\subsection{Wahrscheinlichkeiten}
+Idee: Zufallsexperimente beschreiben Situationen, wo Ausgang/Ergebnisse nicht exakt vorhersagbar oder bekannt sind. Wir möchten eine mathematische Beschreibung und Quantifizierung.
+
+\subsection{Beispiel-Situationen}
+\enumstart
+	\item Zufällige Experimente
+	\item Sehr komplexe Phänomene (z.B. Aktienkurse)
+\enumend
+
+\subsubsection{Grundbegriffe}
+Definitionen\\
+\enumstart
+	\item Ereignisraum / Grundraum: Menge $\Omega \neq \emptyset$ enthält Elemente $\omega \in \Omega$, das sind alle möglichen Ergebnisse des betrachteten Zufallsexperiments (Elementarereignisse, Ausgänge)
+	\item Beispiele
+	\enumstart
+		\item Ein Würfelwurf: $\Omega = \{$1,2,3,4,5,6$\}$
+		\item Zwei Münzwürfe: $\Omega = \{$KK, KZ, ZK, ZZ$\}$
+		\item Jobs im Drucker: $\Omega = \N_0$
+		\item Lebensdauer einer Glühbirne: $\Omega = \R^{+}_0$
+		\item Aktienkurs: $\Omega = \{$alle Funktionen $\omega:\R^{+} \rightarrow \R^{+}\}$
+	\enumend
+	\item Die Potenzmenge von $\Omega$ (Menge aller Teilmengen von $\Omega$)
+	\enumstart
+		\item Notation: $\Pow(\Omega)$ oder $2^{\Omega}$
+	\enumend
+	\item Prinzipielles Ereigniss
+	\enumstart
+		\item Ist eine Teilmenge $A \subseteq \Omega$, also $A \in 2^{\Omega}$
+	\enumend
+	\item Klasse aller beobachtbaren Ereignisse $\F$
+	\enumstart
+		\item Ist eine Teilmenge von $2^{\Omega}$
+		\item Für endlich oder abzählbare $\Omega$: nehme meistens $\F = 2^{\Omega}$
+		\item Für überabzählbare $\Omega$ muss $\F$ eine echte Teilmenge von $2^{\Omega}$ sein, um mathematische Probleme zu vermeiden.
+		\item $\F$ muss immer eine $\sigma$-Algebra sein
+	\enumend
+	\item $\sigma$-Algebra Axiome
+	\enumstart
+		\item $\Omega \in \F$
+		\item $A \in \F \implies A^c \in \F$
+		\item Sind $A_n \in \F$ für $n \in \N$, so ist auch $\bigcup_{n \in \N}A_n \in \F$
+	\enumend
+	\item Bemerkungen
+	\enumstart
+		\item Natürlich ist $2^{\Omega}$ eine $\sigma$-Algebra
+		\item Für dasselbe Experiment kann es verschiedene Beschreibungen (d.h. Paare ($\Omega$,$\F$)) geben
+	\enumend
+\enumend
+
+\subsubsection{Beispiele}
+Normaler Würfel, ein Wurf; Als Ergebniss wird nur mitgeteilt, ob die Zahl gerade/ungerade ist.
+\enumstart
+	\item Modell 1
+	\enumstart
+		\item $\Omega_1 = \{$U,G$\}$
+		\item $\F_1 = 2^{\Omega} = \{\Omega_1, \emptyset, \{$U$\}$,$\{$G$\}\}$
+	\enumend
+	\item Modell 2
+	\enumstart
+		\item $\Omega_2 = \{1,2,3,4,5,6\}$ aber beobachtbar sind nicht alle Teilmengen!
+		\item $\F_2 = \{\Omega, \emptyset, \{1,3,5\},\{2,4,6\}\}$
+	\enumend
+	\item Grundannahme: bei unserem Zufallsexperiment kommt als Ausgang (bei jedem Versuch)  genau ein Elementarereignis $\omega \in \Omega$ heraus
+	\item Sprechweise: für $A \in \F$ sagt man "$A$ tritt ein", falls das erhaltene $\omega$ in $A$ liegt. Damit kann man mit Mengenoperationen neue Ereignisse bilden.
+	\item Mengenoperationen
+	\enumstart
+		\item Vereinigung $A \cup B$: "$A$ oder $B$ (oder beide) tritt ein" ($A,B \in \F \implies A \cup B \in \F$)
+		\item Durchschnitt $A \cap B$: "$A$ und $B$ treten ein" ($A,B \in \F \implies A \cap B \in \F$)
+		\item Komplement $A^c$: "$A$ tritt nicht ein" ($A \in \F \implies A^c \in \F$)
+		\item Die $\sigma$-Algebra Axiome garantieren die Verwendbarkeit dieser Operationen
+	\enumend
+\enumend
+
+\subsubsection{Wahrscheinlichkeit / Wahrscheinlichkeitsmass}
+Definition: Abbildung $P: \F \rightarrow [0,1], A \mapsto P[A]$
+\enumstart
+	\item A0) $P[A] \ge 0 \forall A \in \F$
+	\item A1) $P[\Omega] = 1$
+	\item A2) $P[\dot\cup_{n = 1}^{\infty}A_n] = \sum_{n = 1}^{\infty}P[A_n]$
+\enumend
+Sprechweise: $P[A]$ ist die Wahrscheinlichkeit (WS) für das Ereignis $A$, WS dass $A$ eintritt, $\mathellipsis$\\
+Einfache Rechenregeln:
+\enumstart
+	\item $P[A^c] = 1 - P[A]$
+	\enumstart
+		\item $1 = P[\Omega] = P[A] + P[A^c] \implies P[A^c] = 1 - P[A]$
+	\enumend
+	\item $P[\emptyset] = 0$
+	\enumstart
+		\item $1 = P[\Omega] = P[\Omega] + P[\emptyset] = 1 + P[\emptyset]\implies P[\emptyset] = 0$
+	\enumend
+	\item $A \subseteq B$ and $A,B \in \F \implies P[A] \le P[B]$
+	\enumstart
+		\item $B = B \cap \Omega = B \cap (A \dot\cup A^c) = (B \cap A) \dot\cup (B \cap A^c) = A \dot\cup (B \setminus A) \implies P[B] = P[A] + P[B \setminus A] \ge P[A]$
+	\enumend
+	\item Für beliebige $A,B \in \F$ gilt: $P[A \cup B] = P[A] + P[B] - P[A \cap B]$
+\enumend
