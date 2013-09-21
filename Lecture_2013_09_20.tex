@@ -1,0 +1,51 @@
+\subsection{Diskrete Wahrscheinlichkeits-Räume}
+Oft ist $\Omega$ entweder endlich oder abzählbar; dann kann (und wird) man $\F = 2^\Omega$ wählen (d.h. alle prinzipiellen Ereignisse werden als beobachtbar angenommen).\\
+Ferner kann man dann ein Wahrscheinlichkeitsmass $P$ festlegen durch die Werte $P[\{w_i\}] = p_i$ für alle $w_i \in \Omega$, d.h. man muss $P$ nur für einpunkt-Mengen spezifizieren, denn für $A \in \F = 2^\Omega$ ist dann $P[A] = P[\dot\bigcup_{w_i \in A}\{w_i\}] = \sum_{i \in [1, |A|]}P[\{w_i\}] = \sum_{i \in [1, |A|]}p_i$
+
+\subsubsection{Spezifikation Einführung}
+$\Omega$ ist endlich und alle $w_i \in \Omega$ haben gleiche Wahrscheinlichkeit.
+\enumstart
+	\item Wahrscheinlichkeit: Laplace-Modell
+	\item $P$ = diskrete Gleichverteilung auf $\Omega$
+	\item Klar: Ist $|\Omega| = N$, so ist dann $p_1 = p_2 = \mathellipsis = p_N = \frac{1}{N} = \frac{1}{|\Omega|}$
+	\item Für $A \in \F = 2^\Omega$ ist dann $P[A] = \frac{|A|}{|\Omega|} = \frac{\text{Anzahl gültige Fälle}}{\text{Anzahl mögliche Fälle}}$
+\enumend
+
+\subsubsection{Beispiel - 2 Münzwürfe}
+\enumstart
+	\item $\Omega = \{KK, KZ, ZK, ZZ\}$
+	\item $\F = 2^\Omega$
+	\item $P =$ gleichverteilung, d.h. alle Sequenzen aus $K$ und $Z$  haben die gleiche Wahrscheinlichkeit
+	\item Also: $p_i = \frac{1}{4}, i \in \{1,2,3,4\}$ und z.B. $P[\text{genau einmal Zahl}] = P[\{KZ, ZK\}] = \frac{2}{4} = \frac{1}{2}$
+\enumend
+
+\subsubsection{Beispiel - dreistellige Zahlen}
+\enumstart
+	\item Schreibe zufällig eine dreistellige Zahl hin. Wie wahrscheinlich ist es, dass sich dann Ziffern wiederholen?
+	\item $\Omega = \{000, \mathellipsis, 999\}$
+	\item $\F = 2^\Omega$
+	\item $P =$ Gleichverteilung, d.h. "zufällig" wird interpretiert als "Alle Dreierserien haben gleiche Wahrscheinlichkeit"
+	\item $A = \{\text{Geschriebene Zahl enthält wiederholende Ziffern}\}$
+	\item Dann ist $|\Omega| = 1000$ aber $|A| = ?$
+	\item Einfacher: $P[A] = 1 - P[A^c]$ und $|A^c| = |\{\text{Alle drei Ziffern sind verschieden}\}| = 10*9*8 = 720$
+	\item $P[A^c] = 0,72 \implies P[A] = 0.28$
+\enumend
+
+\subsubsection{Beispiel - Geburtstagsproblem}
+\enumstart
+	\item Gegeben ist ein Raum mit $n$ Personen. Mit welcher Wahrscheinlichkeit hat man Pseudozwillinge d.h. Paare mit gleichem Geburtstag? Mit welcher Wahrscheinlichkeit hat 1 Person heute Geburtstag?
+	\item Sei $t_i, i \in \{1, \mathellipsis, n\}$ der Geburtstag von Person $i$
+	\item Ignoriere Schaltjahre (365 Tage pro Jahr)
+	\item Elementarereignisse $\omega = (t_1, \mathellipsis, t_n) \implies \Omega = \{\text{Alle Folgen der Länge $n$ bestehend aus den Zahlen 1, $\mathellipsis$, 365}\}$
+	\item $\F = 2^\Omega$
+	\item $P =$ Gleichverteilung auf $\Omega$, d.h. alle möglichen Folgen werden als gleich wahrscheinlich angenommen.
+	\item $|A| = \{\text{habe Pseudozwillinge}\}$
+	\item Dann: $|\Omega| = 365^n$, aber $|A| = ?$
+	\item $|A^c| = |\{\text{alle Geburtstage sind verschieden}\}| = 365*364*\mathellipsis*(365-(n-1))$
+	\item $P[A^c] = \frac{|A|}{|\Omega|} = \frac{364}{365}*\mathellipsis*\frac{365-n+1}{365}$
+	\item $B = \{\text{Jemand hat heute Geburtstag}\} \implies |B| = ?$
+	\item $B^c = \{\text{Niemand hat heute Geburtstag}\} \implies |B^c| = 364^n$
+	\item $P[B] = 1 - P[B^c] = 1 - (\frac{364}{365})^n$
+	\item Ab welchem $n$ ist $P[B] \ge \alpha$?
+	\item $1 - (\frac{364}{365})^n \ge \alpha \implies (\frac{364}{365})^n \le 1 - \alpha \implies n\log(\frac{364}{365}) \le \log(1 - \alpha) \implies n \ge \frac{\log(1 - \alpha)}{\log(\frac{364}{365})}$
+\enumend
