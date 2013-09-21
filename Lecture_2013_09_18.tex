@@ -123,4 +123,10 @@ Einfache Rechenregeln:
 		\item $B = B \cap \Omega = B \cap (A \dot\cup A^c) = (B \cap A) \dot\cup (B \cap A^c) = A \dot\cup (B \setminus A) \implies P[B] = P[A] + P[B \setminus A] \ge P[A]$
 	\enumend
 	\item Für beliebige $A,B \in \F$ gilt: $P[A \cup B] = P[A] + P[B] - P[A \cap B]$
+	\enumstart
+		\item $B = (B \cap A) \dot\cup (B \setminus A)$, also $P[B] = P[B \cap A] + P[B \setminus A]$
+		\item $A = (A \cap B) \dot\cup (A \setminus B)$, also $P[A] = P[A \cap B] + P[A \setminus B]$
+		\item $A \cup B = ((A \cup B) \cap B) \dot\cup ((A \cup B) \cap B^c) = ((A \cup B) \cap B) \dot\cup (A \cap B^c) = (B \setminus A) \dot\cup (A \cap B) \dot\cup (A \setminus B)$
+		\item $P[A \cup B] = P[B \setminus A] + P[A \cap B] + P[A \setminus B] = P[B] - P[A \cap B] + P[A \cap B] + P[A] - P[A \cap B] = P[A] + P[B] - P[A \cap B]$
+	\enumend
 \enumend
