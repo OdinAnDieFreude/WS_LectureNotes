@@ -1,0 +1,94 @@
+\subsubsection{Beispiel - Lotto (Version Deutschland)}
+Ziehe 6 aus 49 Kugeln (ohne Zusatzzahl). Was ist die Wahrscheinlichkeit für einen 6er, bzw 3er?\\
+\enumstart
+	\item Modell
+	\enumstart
+		\item Ein Elementarereignis ist das Ergebnis einer Ziehung, Reihenfolge ist egal $\implies$ typisches $\omega$ ist also eine Menge von 6 Zahlen.
+		\item $\Omega = \{\omega = \{z_1, \mathellipsis, z_3\} | z_1, \mathellipsis, z_6 \in \{1, \mathellipsis, 49\}\}$
+		\item $\F = 2^\Omega$
+		\item $P =$ Gleichverteilung
+		\item $\Omega = \binom{49}{6} = \frac{49*48*47*46*45*44}{6!}$
+		\item $A_6 = \{\text{habe Sechser}\} = \{\text{gezogene Zahlen stimmen mit meinen, a priori gewählten, überein}\}$
+		\item $|A_6| = 1 \implies P[A_6] = \frac{|A_6|}{|\Omega|} = \frac{1}{\binom{49}{6}} = 7.15*10^{-8}$
+		\item $A_3 = \{$habe Dreier$\} = \{$3 der gezogenen 6 liegen in meinen 6, die restlichen 3 liegen nicht in meinen 6, liegen also in den restlichen 43$\}$
+		\item $|A_3| = \binom{6}{3}\binom{43}{3} = \frac{6*5*4*43*42*41}{3!3!} = 246820$
+	\enumend
+\enumend
+
+\subsection{Bedingte Wahrscheinlichkeiten}
+\enumstart
+	\item Definition
+	\enumstart
+		\item $(\Omega, \F, P)$ ein Wahrscheinlichkeits-Raum, $A, B$ Ereignisse mit $P[A] > 0$
+		\item Bedingte Wahrscheinlichkeit von $B$ gegeben $A$ ist $P[B | A] := \frac{P[B \cap A]}{P[A]}$
+		\item Beispiel - Würfelwurf
+		\enumstart
+			\item $A = \{$Gerade Augen zahl$\}$, $B = \{$Augenzahl  $<$ 4$\}$
+			\item $\Omega = \{1, \mathellipsis, 6\}, \F = 2^\Omega, P =$ Gleichverteilung
+			\item $A = \{2,4,6\}, B = \{1,2,3\} \implies A \cap B = \{2\} \implies P[B | A] = \frac{\frac{|A \cap B|}{|\Omega|}}{\frac{|A|}{|\Omega|}} = \frac{1}{3}$
+		\enumend
+	\enumend
+	\item Bemerkung
+	\enumstart
+		\item Im Allgemeinen gilt: $P[B | A] \ne P[B]$
+		\item Für fixiertes $A$ mit $P[A] > 0$ ist $P[\circ |A], B \mapsto P[B | A]$ wieder ein Wahrscheinlichkeitsmass auf $\F$ (Prüfe Axiome!)
+		\item Ist $\Omega$ endlich oder abzählbar mit $\F = 2^\Omega$, so ist $P$ gegeben durch Gewichte $p_i = P[\{\omega_i\}]$.
+		\item $P[\circ | A]$ hat Gewichte $p_i^A := P[\{\omega_i\} | A] = \begin{cases} 0 &\text{wenn }\omega_i \notin A\\\frac{p_i}{P[A]} &\text{wenn } \omega_i \in A \end{cases}$
+		\item Bedingte Wahrscheinlichkeit ist nicht symmetrisch, für fixiertes $B$ ist $P[B | \circ], A \mapsto P[B | A]$ kein Wahrscheinlichkeitsmass
+	\enumend
+\enumend
+Für beliebige Ereignisse $A, B$ gilt immer die Multiplikationregel $P[A \cap B] = P[A]P[B | A]$ (Klar aus der Definition, wenn man $\frac{0}{0}$ als irgendetwas definiert und x*0 = 0 setzt.)\\
+Vergleiche Additionregel $P[B \cup A] = P[B] + P[A] - P[B \cap A]$
+\subsubsection{Beispiel - Urne}
+\enumstart
+	\item Eine Urne enthält 3 rote und 1 blaue Kugel. Ziehe 2 Kugeln ohne zurücklegen. Mit welcher Wahrscheinlichkeit sind beide rot?
+	\item Variante 1
+	\enumstart
+		\item $\Omega = \mathellipsis, \F = 2^\Omega, P =$ Gleichverteilung, $C = \{$2 rote$\}, |C| = ?$
+	\enumend
+	\item Variante 2
+	\enumstart
+		\item $R_i = \{i$-te gezogene Kugel ist rot$\}, i = 1, 2, C = R_1 \cap R_2.$ Dann ist $P[R_1] = \frac{3}{4}, P[R_2 | R_1] = \frac{2}{3}$, $P[C] = P[R_1 \cap R_2] = P[R_1]P[R_2 | R_1] = \frac{1}{2}$
+	\enumend
+\enumend
+
+\subsection{Satz der totalen Wahrscheinlichkeiten}
+Sei $A_1, \mathellipsis, A_n$ eine Zerlegung von $\Omega$ in Ereignisse, d.h. $A_1, \mathellipsis, A_n \in \F, \dot\bigcup_{i=1}^n+_i = \Omega$\\
+Für jedes beliebige $B \in \F$ gilt dann $P[B] = \sum^n_{i=1}P[A_i]P[B|A_i]$\\
+Dies gilt auch für abzählbare Zerlegungen, setze $n = \infty$\\
+Beweis
+\enumstart
+	\item $B = B \cap \Omega = \dot\bigcup_{i=1}^nB\cap A_i \implies P[B] = \sum_{i=1}^nP[B \cap A_i] = \sum_{i=1}^nP[A_i]P[B | A_i]$
+\enumend
+
+\subsubsection{Beispiel}
+\enumstart
+	\item (Siehe Einführung) Eine Urne enthält gleich viele gewöhnliche und gezinkte Würfel. Letztere haben statt der 6 eine 7. Ziehe zufällig einen Würfel und würfle. Mit welcher Wahrscheinlichkeit ist die dann erhaltene Zahl gerade? $Z=\{$gezogener Würfel ist gezinkt$\}$, $G=\{$gewürfelte Zahl ist gerade$\}$
+	\item $\Omega = Z \dot\cup Z^c$, $P[Z] = \frac{1}{2} = P[Z^c]$
+	\item $P[G | Z^c] = \frac{1}{2}$, $P[G | Z] = \frac{1}{3}$
+	\item Damit erhält man: $P[G] = P[Z]P[G | Z] + P[Z^c]P[G | Z^c] = \frac{1}{6} + \frac{1}{4} = \frac{5}{12} < \frac{1}{2}$
+	\item Das ist intuitiv klar, die Wahrscheinlichkeit für eine gerade Zahl ist kleiner, als wenn man einen normalen Würfel hätte.
+	\item Es ist auch eine Darstellung als Baumdiagramm möglich.
+\enumend
+
+\subsubsection{Beispiel}
+\enumstart
+	\item  Nehmen wir nun an, die gewürfelte Zahl ist ungerade. Wie gross ist dann die (bedingte) Wahrscheinlichkeit, dass der Würfel gezinkt ist? A priori, ohne Information, ist $P[Z] = \frac{1}{2}$
+	\item Aber wir suchen nun $P[Z | G^c] = \frac{P[Z \cap G^c]}{P[G^c]} = \frac{P[Z]P[G^c | Z]}{1 - P[G]} = \frac{4}{7}$
+\enumend
+
+\subsubsection{Beispiel - Krankheitsdiagnose}
+\enumstart
+	\item Bekannt
+	\enumstart
+		\item In der ganzen Bevölkerung haben 0.1\% diese Krankheit.
+		\item Von den kranken werden bei einer Untersuchung 90\% entdeckt
+		\item Von den gesunden Personen werden bei der Untersuchung 99\% als gesund eingeschätzt
+	\enumend
+	\item Nun hat man eine Person aus der Bevölkerung und die Diagnose "krank".
+	\item Wie gross ist die (bedingte) Wahrscheinlichkeit, dass die Person wirklich krank ist? 8.3\%
+	\item $A := \{$Eine zufällige Person ist krank$\}$, $B := \{$Untersuchung einer zufälligen Person ergibt krank$\}$
+	\item Dann $P[A] = 0.1\% = 0.001$, $P[A^c] = 1 - P[A] = 0.999$
+	\item $P[B | A] = 90\% = 0.9$, $P[B^c | A] = 1 - P[B | A] = 0.1$
+	\item $P[B^c | A^c] = 99\% = 0.99$, $P[B | A^c] = 1 - P[B^c | A^c] = 0.01$
+\enumend
