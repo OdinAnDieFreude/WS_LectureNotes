@@ -91,4 +91,6 @@ Beweis
 	\item Dann $P[A] = 0.1\% = 0.001$, $P[A^c] = 1 - P[A] = 0.999$
 	\item $P[B | A] = 90\% = 0.9$, $P[B^c | A] = 1 - P[B | A] = 0.1$
 	\item $P[B^c | A^c] = 99\% = 0.99$, $P[B | A^c] = 1 - P[B^c | A^c] = 0.01$
+	\item Gesucht $P[A | B] = = \frac{P[A \cap B]}{P[B]} = \frac{P[A]P[B | A]}{P[A]P[B | A] + P[A^c]P[B | A^c]} = \frac{0.001*0.9}{0.001*0.9 + 0.999*0.01} = 0.0826$
+	\item Bemerkung: Verbessert man Diagnostik von $P[B^c | A^c] = 0.99$ auf 99.9\%, dann steigt die Zuverlässigkeit (bedingte Wahrscheinlichkeit $P[A | B]$) von 8.26\% auf 47\%
 \enumend
