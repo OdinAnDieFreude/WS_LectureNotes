@@ -1,0 +1,52 @@
+\subsection{Formel von Bayes}
+\enumstart
+	\item Bedingte Wahrscheinlichkeit von $B$ gegeben $A$, für $P[A] > 0$ ist $P[B | A] = \frac{P[B \cap A]}{P[A]}$
+	\item Ist auch $P[B] > 0$, so ist $P[A | B] = \frac{P[A \cap B]}{P[B]} = \frac{P[B | A]P[A]}{P[B]} = \frac{P[B | A]P[A]}{P[B | A]P[A] + P[B | A^c]P[A^c]}$
+	\item Allgemeiner: Ist $A_1, \mathellipsis, A_n$ eine Zerlegung von $\Omega $(d.h. $\dot\bigcup_{i=1}^nA_i = \Omega$) und $\forall i \in \{1, \mathellipsis, n\}.P[A_i] > 0$, so gilt die Formel von Bayes: $P[A_k | B] = \frac{P[B | A_k]P[A_k]}{\sum_{i=1}^nP[B | A_i]P[A_i]}$
+\enumend
+
+\subsubsection{Beispiel - Ziegenproblem}
+\enumstart
+	\item Drei Tore, zwei mit Ziegen, eine mit einem Preis dahinter
+	\item $A := \{$bei der ersten gewählten Tür hat man den Preis erwischt$\}
+$
+	\item $G := \{$man gewinnt bei wechseln der Türe$\}$
+	\item Mit bedingten Wahrscheinlichkeit
+	\item Gesucht: $P[G] = ?$
+	\enumstart
+		\item Totale Wahrscheinlichkeit: $P[G] = P[G | A]P[A] + P[G | A^c]P[A^c] = 0*\frac{1}{3} + 1*\frac{2}{3} = \frac{2}{3}$
+	\enumend
+	\item Das gleiche ohne bedingte Wahrscheinlichkeiten
+	\enumstart
+		\item Habe zwei zufällige Elemente: stelle Preis hinter eine Tür und wähle Tür bei Schritt 1.
+		\item $(i,k)$ für das Elementarereignis "Preis ist hinter Tür $i$, man wählt zu erst Tür $k$"
+		\item $\Omega = \{(i,k) | i,k \in \{1,2,3\}\}, P =$ Gleichverteilung
+		\item Für $i=k$ hat man bei Versuch 1 schon die richtige Tür, beim Wechsel verliert man. $\rightarrow$ 3 von 9 Fälle $\implies$ Wahrscheinlichkeit $\frac{1}{3}$
+		\item Für $i \ne k$ hat man zu erst eine Falsche Tür, die zweite falcshe Tür wird geöffnet, also Gewinnt man bei einem Wechsel $\rightarrow$ 6 von 9 Fälle $\implies$ Wahrscheinlichkeit $\frac{2}{3}$
+	\enumend
+\enumend
+
+\subsection{Unabhängigkeit}
+\enumstart
+	\item Definition: 2 Ereignisse $A,B$ heissen unabhängig (bezüglich $P$), falls $P[A \cap B] = P[A]P[B]$
+	\item Bemerkung: Für $P[A] = 0$ oder $P[B] = 0$ sind $A,B$ immer unabhängig
+	\item Für $P[A] > 0$ ist $P[B | A]$ wohldefiniert und dann gilt: $A,B$ unabhängig $\Leftrightarrow P[B | A] = P[B]$
+	\item Analog für $P[B] > 0$ gilt: $B,A$ unabhängig $\Leftrightarrow P[A | B] = P[A]$
+	\item Bemerkung:  Für mehr als 2 Ereignisse ist die Definition etwas Subtiler
+\enumend
+
+\subsubsection{Beispiel - Zwei Münzwürfe}
+\enumstart
+	\item Betrachte $K_i = \{$Kopf bei Wurf $i\}$
+	\item Modell: $\Omega = \{$KK, KZ, ZK, ZZ$\}$, $\F = 2^\Omega$, $P =$ Gleichverteilung
+	\item $|K_1| = |\{$KK, KZ$\}| = 2 \implies P[K_1] = \frac{1}{2}$
+	\item $|K_2| = |\{$KK, ZK$\}| = 2 \implies P[K_2] = \frac{1}{2}$
+	\item $|K_1 \cap K_2| = |\{$KK$\}| = 1 \implies P[K_1 \cap K_2] = \frac{1}{4} = P[K_1]P[K_2] \implies$ $K_1$ und $K_2$ sind unabhängig
+\enumend
+
+\subsubsection{Beispiel - Gezinkter Würfel (siehe Einführung)}
+\enumstart
+	\item $G_i = \{$Wurf $i$ gerade$ | i \in \{1,2\}\}$
+	\item Sind $G_i$ unabhängig? Nein!
+	\item Baumgrafik
+\enumend
