@@ -15,6 +15,8 @@
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Pow}{\mathcal{P}}
 \newcommand{\F}{\mathcal{F}}
+\newcommand{\W}{\mathcal{W}}
+\newcommand{\B}{\mathcal{B}}
 
 \setcounter{tocdepth}{4}
 \setcounter{secnumdepth}{4}
@@ -44,5 +46,63 @@
 \input{Lecture_2013_09_20.tex}
 \input{Lecture_2013_09_25.tex}
 \input{Lecture_2013_09_27.tex}
+
+\subsubsection{Beispiel - Gezinkter Würfel 2}
+\enumstart
+	\item $Z = \{$gezogener Würfel ist gezinkt$\}, G_i = \{$gerade Zahl bei Wurf $i\}$
+	\item $P[G_2 | G_1] = \frac{P[G_1 \cap G_2]}{P[G_1]} = \frac{13}{30} \ne \frac{5}{12} = P[G_2]$
+	\item Sie sind nicht unabhängig, d.h. das Eintreten von $G_1$ ändert unsere Einschätzung für ein anschliessendes Eintreten von $G_2$
+	\item Und: $P[G_1 | Z] \ne P[G_1], P[G_2 | Z] \ne P[G_2]$
+	\item Intuitiv: $G_1$ und $G_2$ sind abhängig wegen der gemeinsamen Abhängigkeit von $Z$
+	\enumstart
+		\item TODO zeige oder widerlege Transitivität
+	\enumend
+\enumend
+
+\subsubsection{Unabhängigkeit von mehreren Variablen}
+\enumstart
+	\item Eine beliebige Familie von Ereignisen $A_\lambda, \lambda \in \Lambda$ heisst unabhängig, falls für jede endliche Teilfamilie die Produktformel gilt. $\forall m \in \N, \forall \{\lambda_1, \mathellipsis, \lambda_m\} \subseteq \Lambda$ gilt $P[\bigcap^m_{i=1}A_{\lambda_i}] = \Pi^m_{i=1}P[A_{\lambda_i}]$
+	\item Bemerkung: Für $n \ge 3$ Ereignisse macht es einen Unterschied, ob die Produktformel für alle endlichen Teilfamilien gilt(d.h. Unabhängigkeit), oder nur für alle Paare von Ereignissen(sogenannte paarweise Unabhängigkeit).
+\enumend
+
+\subsubsection{Beispiel Faire Münze, 2 Würfe}
+\enumstart
+	\item $A = \{$Kopf bei Wurf 1$\}$, $B = \{$Kopf bei Wurf 2$\}$, $C = \{$beide Würfe gleich$\}$
+	\item $A,B$ und $C$ sind paarweise unabhängig
+	\item $\Omega = \{$KK, KZ, ZK, ZZ$\}$, $\F = 2^\Omega$, $P =$ diskrete Gleichverteilung $\Rightarrow |\Omega| = 4$
+	\item $A = \{$KK, KZ$\} \Rightarrow P[A] = \frac{1}{2}$
+	\item $B = \{$KK, ZK$\} \Rightarrow P[B] = \frac{1}{2}$
+	\item $C = \{$KK, ZZ$\} \Rightarrow P[C] = \frac{1}{2}$
+	\item $A \cap B = \{KK\} \Rightarrow P[A \cap B] = \frac{1}{4} = P[A]P[B]$
+	\item $A \cap C = \{KK\} \Rightarrow P[A \cap C] = \frac{1}{4} = P[A]P[C]$
+	\item $B \cap C = \{KK\} \Rightarrow P[B \cap C] = \frac{1}{4} = P[B]P[C]$
+	\item $A \cap B \cap C = \{KK\} \Rightarrow P[A \cap B \cap C] = \frac{1}{4} \ne \frac{1}{8} = P[A]P[B]P[C]$
+	\item Es müssen also nicht nur Paare, sondern alle endlichen Teilmengen betrachtet werden
+\enumend
+
+\section{Diskrete Zufallsvariablen und diskrete Verteilungen}
+\enumstart
+	\item Bisher: beschreibe zufällige Experimente durch $(\Omega, \F, P)$
+	\item Oft: ein Experiment ist (alternativ / einfacher) beschreibbar durch seine Ausgänge. Via eine Abbildung ist die besonders einfach, wenn $\Omega$ (oder etwas allgemeiner der Wertebereich der Abbildung) endlich oder abzählbar ist
+	\item Im ganzen Kapitel: $\Omega \ne \emptyset$ ist endlich oder abzählbar, $\F = 2^\Omega$
+	\item Damit ist $P$ beschreibbar durch $p_i = P[\{\omega_i\}] \forall i$
+\enumend
+
+\subsection{Grundbegriffe}
+\enumstart
+	\item Definition: Zufallsvariable (ZV) auf $(\Omega, \F)$ ist eine Abbildung $X: \Omega \rightarrow \R$
+	\item Der Wertebereich $\W(X) \subseteq \R$ ist ebenfalls endlich oder abzählbar
+	\item Verteilungsfunktion von $X$: Funktion $F_X: \R \rightarrow [0,1], t\mapsto F_X(t) := P[X \le t] = P[\{X \le t\}] = P[\{\omega \in \Omega | X(\omega \le t\}]$
+	\item Gewichtsfunktion (diskrete Dichte): Funktion $p_X: \R \rightarrow [0,1], t \mapsto p_X(t) := P[X = t] = P[\{\omega \in \Omega | X(\omega) = t\}]$
+	\item Klar für $t \notin \W(\Omega)$ ist $p_X(t) = 0$, also lebt $p_X$ auf $\Omega$
+	\item Verteilung von $X$ genannt $\mu_X$: Wahrscheinlichkeitsmass auf $\R$ definiert durch $\mu_X(B) := P[X \in B]$ für $B \subseteq \R$. De facto braucht man nur $B \subseteq \W(X)$
+	\item Bemerkung: Was passiert für $\Omega$ allgemein?
+	\enumstart
+		\item $p_X$ ist nutzlos, denn oft ist $p_X(t) = 0 \forall t$
+		\item $F_X$ bleibt in der Definition unverändert, damit das aber Sinn macht, muss die Menge $\{X \le t\}$ in $\F$ sein, $\forall t \in \R$
+		\item Eine Zufallsvariable ist eine messbare Abbildung, d.h. $X: \Omega \rightarrow \R$ mit $\{X \le t\} \in \F, \forall t \in \R$
+		\item Verteilung $\mu_X$: sollte man nur auf $B \in \B(\R)$ definieren (d.h. nicht $B \in 2^\R$, sondern aus einer gewissen $\sigma$-Algebra auf $\R$)
+	\enumend
+\enumend
 
 \end{document}
