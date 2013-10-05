@@ -105,4 +105,46 @@
 	\enumend
 \enumend
 
+\subsubsection{Beispiel - Würfelwurf}
+\enumstart
+	\item $\Omega = \{1, \mathellipsis, 6\}$ und $X: \Omega \rightarrow \R, X(\omega) = \omega$
+\enumend
+
+\subsubsection{Beispiel - 2 Münzwürfe}
+\enumstart
+	\item Gesamtanzahl Zahlen ($X$), oder Differenz Köpfe-Zahlen ($Y$)
+	\item $\Omega = \{$KK, KZ, ZK, ZZ$\}, X(\omega) = \{$(KK, 0), (KZ, 1), (ZK, 1), (ZZ, 2)$\}$
+	\item $Y(\omega) = \{$(KK, 2), (KZ, 0), (ZK, 0), (ZZ, 2)$\}$
+	\item Gut als Tabelle darstellbar
+\enumend
+
+\subsubsection{Beispiel - Wartezeit auf Rot (Roulette, ohne Null / Doppelnul)}
+\enumstart
+	\item $\Omega = \{$R, SR, SSR, SSSR, $\mathellipsis\}$
+	\item $X(\omega) = \{$(R, 1), (SR, 2), (SSR, 3), $\mathellipsis\}$
+	\item $\W(X) = \N$
+\enumend
+
+\subsubsection{Beispiel}
+\enumstart
+	\item Für $\Omega \ne \emptyset$ und $A\subseteq \Omega$ beliebig ist die Indikatorfunktion definiert als $I_A: \Omega \rightarrow \{0,1\}, I_A(\omega) := \begin{cases}1 &\text{für } \omega \in A \\0 &\text{für } \omega \notin A\end{cases}$
+	\item Übung: hat man eine $\sigma$-Algebra $\F$ auf $\Omega$, so ist $I_A$ eine Zufallsvariable (d.h. messbar) dann und nur dann, wenn $A \in \F$
+\enumend
+
+\subsection{Zusammenhang zwischen $F_X, p_X$ und $\mu_X$}
+\enumstart
+	\item $\mu_X(t) = P[X \in \{t\}] = P[X = t] = p_X(t) \rightarrow$ man bekommt $p_X$ aus $\mu_X$
+	\item $\W(X)$ ist endlch oder abzählbar. $\mu_X$ ist ein Wahrscheinlichkeitsmass auf $\W(X) \implies \mu_X$ ist festgelegt durch Werte auf einpunktigen Mengen, also aus $p_X$
+	\item Für $t \in \W(X)$ oder $\R$ ist $\{X \le t\} = \dot\bigcup_{t_j \in \W(X), t_j \le t}\{X = t_j\}$
+	\item Also gilt: $F_X(t) = P[X \le t] = \sum_{t_j \in \W(X), t_j \le t}P[X = t_j] = \sum_{t_j \in \W(X), t_j \le t}p_X(t_j) \implies F_X$ ist durch $p_X$ festgelegt
+	\item Umgekehrt ist $\{X = t\} = \{X \le t\} \setminus \{X < t\} \implies$ auch $p_X$ ist durch $F_X$ festgelegt
+\enumend
+
+\subsubsection{Beispiel - Wartezeit auf Rot}
+\enumstart
+	\item $\W(X) = \N$
+	\item Wenn wir annehmen, dass die einzelnen Runden unabhängig sind und in jeder Runde Rot und Schwarz je die Wahrscheinlichkeit $\frac{1}{2}$ haben, so hat $X$ eine sogenannte geometrische Verteilung mit Parameter $p = \frac{1}{2}$
+	\item Gewichtsfunktion von $X$ ist $p_X(k) = 2^{-k} = (\frac{1}{2})^k \forall k \in \N$
+\enumend
+
 \end{document}
