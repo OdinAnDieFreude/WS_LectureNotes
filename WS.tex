@@ -47,43 +47,6 @@
 \input{Lecture_2013_09_25.tex}
 \input{Lecture_2013_09_27.tex}
 \input{Lecture_2013_10_02.tex}
-
-\subsection{Bemerkung}
-\enumstart
-	\item Ist $g: \R \rightarrow \R$ eine Abbildung, so ist die Zusammensetzung $Y = g \circ X$ wieder eine diskrete Zufallsvariable. Kurzschreibweise $Y = g(X)$
-\enumend
-
-\subsubsection{Beispiel}
-\enumstart
-	\item $Y = X^2, Y = e^X, Y = (X-a)^n \forall a \in \R, n \in \N$
-\enumend
-
-\subsection{Erwartungswerte}
-\enumstart
-	\item Grundidee: ZV $X$ ist eine Funktion ("mehrdimensionales Objekt") $\implies$ wir wollen eine Kennzahl finden ("eindimensionales Objekt"), die das durchschnittliche Verhalten von $X$ beschreibt
-	\item Motivation: Würfelspiel\\
-	\begin{tabular}{lllllll}
-		Augenzahl & 1 & 2 & 3 & 4 & 5 & 6\\
-		Gewinn (Rp) & 10 & 10 & 20 & 20 & 40 & 80\\
-	\end{tabular}
-	\enumstart
-		\item Was ist ein "fairer" Einsatz für dieses Spiel? d.h. Durchschnittlicher Gewinn = Einsatz
-		\item Annahme: $n$ Spielrunden, $n_i$ Mal erscheint $i$
-		\item Dann ist die Aszahlung: $G(n) = 10n_1 + 10n_2 + 20n_3 + 20n_4 + 40n_5 + 80n_6$
-		\item Durchschnittliche Auszahlung: $\frac{1}{n}G(n) \rightarrow$ Ist abhängig vom Ergebnis der Würfelwürfe
-		\item Für grosse $n$ erwartet man: $\frac{n_i}{n} = p_i$ (frequentistische Interpretation)
-		\item Also: Erwartungswert = $10p_1 + 10p_2 + 20p_3 + 20p_4 + 40p_5 + 80p_6$
-		\item Fairer Würfel: $\forall i, p_i = \frac{1}{6} \implies$ Erwartungswert = $\frac{180}{6} = 30$Rp = fairer Einsatz
-	\enumend
-	\item Definition: Sei $X$ eine diskrete ZV mit Gewichtsfunktion $p_X$. $E[X] = \sum_{x_k \in \W(X)}x_kp_x(x_k)$ nennt man den Erwartungswert von $X$.
-	\item Falls $\sum_{x_k \in \W(X)}|x_k|p_x(x_k) < \infty$, dann ist $E[X]$ der Erwartungswert von $X$, andernfalls existiert der Erwartungswert nicht.
-\enumend
-
-\subsubsection{Beispiel - Raclette}
-\enumstart
-	\item Roulette-Rad: $\Omega = \{00,0,1,\mathellipsis, 36\}, \F = 2^\Omega, P[\{\omega\}] = \frac{1}{|\Omega|} = \frac{1}{38} \forall \omega \in \Omega$ (Laplace Modell)
-	\item $X(\omega) := $ Nettogewinn beim 1CHF auf ungerade =
-	
-\enumend
+\input{Lecture_2013_10_04.tex}
 
 \end{document}
