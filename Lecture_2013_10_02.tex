@@ -1,0 +1,109 @@
+\subsubsection{Beispiel - Gezinkter Würfel 2}
+\enumstart
+	\item $Z = \{$gezogener Würfel ist gezinkt$\}, G_i = \{$gerade Zahl bei Wurf $i\}$
+	\item $P[G_2 | G_1] = \frac{P[G_1 \cap G_2]}{P[G_1]} = \frac{13}{30} \ne \frac{5}{12} = P[G_2]$
+	\item Sie sind nicht unabhängig, d.h. das Eintreten von $G_1$ ändert unsere Einschätzung für ein anschliessendes Eintreten von $G_2$
+	\item Und: $P[G_1 | Z] \ne P[G_1], P[G_2 | Z] \ne P[G_2]$
+	\item Intuitiv: $G_1$ und $G_2$ sind abhängig wegen der gemeinsamen Abhängigkeit von $Z$
+	\enumstart
+		\item TODO zeige oder widerlege Transitivität
+	\enumend
+\enumend
+
+\subsubsection{Unabhängigkeit von mehreren Variablen}
+\enumstart
+	\item Eine beliebige Familie von Ereignisen $A_\lambda, \lambda \in \Lambda$ heisst unabhängig, falls für jede endliche Teilfamilie die Produktformel gilt. $\forall m \in \N, \forall \{\lambda_1, \mathellipsis, \lambda_m\} \subseteq \Lambda$ gilt $P[\bigcap^m_{i=1}A_{\lambda_i}] = \Pi^m_{i=1}P[A_{\lambda_i}]$
+	\item Bemerkung: Für $n \ge 3$ Ereignisse macht es einen Unterschied, ob die Produktformel für alle endlichen Teilfamilien gilt(d.h. Unabhängigkeit), oder nur für alle Paare von Ereignissen(sogenannte paarweise Unabhängigkeit).
+\enumend
+
+\subsubsection{Beispiel Faire Münze, 2 Würfe}
+\enumstart
+	\item $A = \{$Kopf bei Wurf 1$\}$, $B = \{$Kopf bei Wurf 2$\}$, $C = \{$beide Würfe gleich$\}$
+	\item $A,B$ und $C$ sind paarweise unabhängig
+	\item $\Omega = \{$KK, KZ, ZK, ZZ$\}$, $\F = 2^\Omega$, $P =$ diskrete Gleichverteilung $\Rightarrow |\Omega| = 4$
+	\item $A = \{$KK, KZ$\} \Rightarrow P[A] = \frac{1}{2}$
+	\item $B = \{$KK, ZK$\} \Rightarrow P[B] = \frac{1}{2}$
+	\item $C = \{$KK, ZZ$\} \Rightarrow P[C] = \frac{1}{2}$
+	\item $A \cap B = \{KK\} \Rightarrow P[A \cap B] = \frac{1}{4} = P[A]P[B]$
+	\item $A \cap C = \{KK\} \Rightarrow P[A \cap C] = \frac{1}{4} = P[A]P[C]$
+	\item $B \cap C = \{KK\} \Rightarrow P[B \cap C] = \frac{1}{4} = P[B]P[C]$
+	\item $A \cap B \cap C = \{KK\} \Rightarrow P[A \cap B \cap C] = \frac{1}{4} \ne \frac{1}{8} = P[A]P[B]P[C]$
+	\item Es müssen also nicht nur Paare, sondern alle endlichen Teilmengen betrachtet werden
+\enumend
+
+\section{Diskrete Zufallsvariablen und diskrete Verteilungen}
+\enumstart
+	\item Bisher: beschreibe zufällige Experimente durch $(\Omega, \F, P)$
+	\item Oft: ein Experiment ist (alternativ / einfacher) beschreibbar durch seine Ausgänge. Via eine Abbildung ist die besonders einfach, wenn $\Omega$ (oder etwas allgemeiner der Wertebereich der Abbildung) endlich oder abzählbar ist
+	\item Im ganzen Kapitel: $\Omega \ne \emptyset$ ist endlich oder abzählbar, $\F = 2^\Omega$
+	\item Damit ist $P$ beschreibbar durch $p_i = P[\{\omega_i\}] \forall i$
+\enumend
+
+\subsection{Grundbegriffe}
+\enumstart
+	\item Definition: Zufallsvariable (ZV) auf $(\Omega, \F)$ ist eine Abbildung $X: \Omega \rightarrow \R$
+	\item Der Wertebereich $\W(X) \subseteq \R$ ist ebenfalls endlich oder abzählbar
+	\item Verteilungsfunktion von $X$: Funktion $F_X: \R \rightarrow [0,1], t\mapsto F_X(t) := P[X \le t] = P[\{X \le t\}] = P[\{\omega \in \Omega | X(\omega \le t\}]$
+	\item Gewichtsfunktion (diskrete Dichte): Funktion $p_X: \R \rightarrow [0,1], t \mapsto p_X(t) := P[X = t] = P[\{\omega \in \Omega | X(\omega) = t\}]$
+	\item Klar für $t \notin \W(\Omega)$ ist $p_X(t) = 0$, also lebt $p_X$ auf $\Omega$
+	\item Verteilung von $X$ genannt $\mu_X$: Wahrscheinlichkeitsmass auf $\R$ definiert durch $\mu_X(B) := P[X \in B]$ für $B \subseteq \R$. De facto braucht man nur $B \subseteq \W(X)$
+	\item Bemerkung: Was passiert für $\Omega$ allgemein?
+	\enumstart
+		\item $p_X$ ist nutzlos, denn oft ist $p_X(t) = 0 \forall t$
+		\item $F_X$ bleibt in der Definition unverändert, damit das aber Sinn macht, muss die Menge $\{X \le t\}$ in $\F$ sein, $\forall t \in \R$
+		\item Eine Zufallsvariable ist eine messbare Abbildung, d.h. $X: \Omega \rightarrow \R$ mit $\{X \le t\} \in \F, \forall t \in \R$
+		\item Verteilung $\mu_X$: sollte man nur auf $B \in \B(\R)$ definieren (d.h. nicht $B \in 2^\R$, sondern aus einer gewissen $\sigma$-Algebra auf $\R$)
+	\enumend
+\enumend
+
+\subsubsection{Beispiel - Würfelwurf}
+\enumstart
+	\item $\Omega = \{1, \mathellipsis, 6\}$ und $X: \Omega \rightarrow \R, X(\omega) = \omega$
+\enumend
+
+\subsubsection{Beispiel - 2 Münzwürfe}
+\enumstart
+	\item Gesamtanzahl Zahlen ($X$), oder Differenz Köpfe-Zahlen ($Y$)
+	\item $\Omega = \{$KK, KZ, ZK, ZZ$\}, X(\omega) = \{$(KK, 0), (KZ, 1), (ZK, 1), (ZZ, 2)$\}$
+	\item $Y(\omega) = \{$(KK, 2), (KZ, 0), (ZK, 0), (ZZ, 2)$\}$
+	\item Gut als Tabelle darstellbar
+\enumend
+
+\subsubsection{Beispiel - Wartezeit auf Rot (Roulette, ohne Null / Doppelnul)}
+\enumstart
+	\item $\Omega = \{$R, SR, SSR, SSSR, $\mathellipsis\}$
+	\item $X(\omega) = \{$(R, 1), (SR, 2), (SSR, 3), $\mathellipsis\}$
+	\item $\W(X) = \N$
+\enumend
+
+\subsubsection{Beispiel}
+\enumstart
+	\item Für $\Omega \ne \emptyset$ und $A\subseteq \Omega$ beliebig ist die Indikatorfunktion definiert als $I_A: \Omega \rightarrow \{0,1\}, I_A(\omega) := \begin{cases}1 &\text{für } \omega \in A \\0 &\text{für } \omega \notin A\end{cases}$
+	\item Übung: hat man eine $\sigma$-Algebra $\F$ auf $\Omega$, so ist $I_A$ eine Zufallsvariable (d.h. messbar) dann und nur dann, wenn $A \in \F$
+\enumend
+
+\subsection{Zusammenhang zwischen $F_X, p_X$ und $\mu_X$}
+\enumstart
+	\item $\mu_X(t) = P[X \in \{t\}] = P[X = t] = p_X(t) \rightarrow$ man bekommt $p_X$ aus $\mu_X$
+	\item $\W(X)$ ist endlch oder abzählbar. $\mu_X$ ist ein Wahrscheinlichkeitsmass auf $\W(X) \implies \mu_X$ ist festgelegt durch Werte auf einpunktigen Mengen, also aus $p_X$
+	\item Für $t \in \W(X)$ oder $\R$ ist $\{X \le t\} = \dot\bigcup_{t_j \in \W(X), t_j \le t}\{X = t_j\}$
+	\item Also gilt: $F_X(t) = P[X \le t] = \sum_{t_j \in \W(X), t_j \le t}P[X = t_j] = \sum_{t_j \in \W(X), t_j \le t}p_X(t_j) \implies F_X$ ist durch $p_X$ festgelegt
+	\item Umgekehrt ist $\{X = t\} = \{X \le t\} \setminus \{X < t\} \implies$ auch $p_X$ ist durch $F_X$ festgelegt
+\enumend
+
+\subsubsection{Beispiel - Wartezeit auf Rot}
+\enumstart
+	\item $\W(X) = \N$
+	\item Wenn wir annehmen, dass die einzelnen Runden unabhängig sind und in jeder Runde Rot und Schwarz je die Wahrscheinlichkeit $\frac{1}{2}$ haben, so hat $X$ eine sogenannte geometrische Verteilung mit Parameter $p = \frac{1}{2}$
+	\item Gewichtsfunktion von $X$ ist $p_X(k) = 2^{-k} = (\frac{1}{2})^k \forall k \in \N$
+\enumend
+
+\subsection{Gewichtsfunktion}
+\enumstart
+	\item $p_X: \R \rightarrow [0,1], p_X(t) \ne 0$ nur auf $\W(X), p_X(t) \ge 0, \sum_{t \in \W(X)}p_X(t) = P[x \in \W(x)] = 1$
+\enumend
+
+\subsection{Umgekehrt}
+\enumstart
+	\item $Y \subseteq \R$ endlich oder abzählbar, $f: \R \rightarrow [0,1]$ mit $f(t) \ne 0$ nur auf $Y, f(t) \ge 0$ und $\sum_{t\in y}f(t) = 1 \implies \exists ZV Y$, so dass $p_Y = f$: wähle $\Omega := Y, Y(\omega) = \omega, P[\{\omega\}] := f(\omega)$
+\enumend
